@@ -203,7 +203,6 @@ function prefixed(hash) {
         ["\x19Ethereum Signed Message:\n32", hash]
     );
 }
-```
 function recoverSigner(message, signature) {
     var split = ethereumjs.Util.fromRpcSig(signature);
     var publicKey = ethereumjs.Util.ecrecover(message, split.v, split.r, split.s);
@@ -217,3 +216,4 @@ function isValidSignature(contractAddress, amount, signature, expectedSigner) {
     return signer.toLowerCase() ==
         ethereumjs.Util.stripHexPrefix(expectedSigner).toLowerCase();
 }
+```
