@@ -12,6 +12,7 @@ For the full contract, please refer to [Ballot.sol](https://github.com/fcdn007/s
 
 
 
+
 #2 Blind Auction
 
 In this section, we will show how easy it is to create a completely blind auction contract on Ethereum. We will start with an open auction where everyone can see the bids that are made and then extend this contract into a blind auction where it is not possible to see the actual bid until the bidding period ends.
@@ -36,9 +37,11 @@ For the full contract, please refer to [BlindAuction.sol](https://github.com/fcd
 
 
 
+
 #3 Safe Remote Purchase
 
 For the full contract, please refer to [Purchase.sol](https://github.com/fcdn007/solidity/new/master/example/solidity_doc/Purchase.sol). 
+
 
 
 
