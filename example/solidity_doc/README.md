@@ -1,4 +1,5 @@
 #1 Voting
+
 The following contract is quite complex, but showcases a lot of Solidity’s features. It implements a voting contract. Of course, the main problems of electronic voting is how to assign voting rights to the correct persons and how to prevent manipulation. We will not solve all problems here, but at least we will show how delegated voting can be done so that vote counting is automatic and completely transparent at the same time.
 
 The idea is to create one contract per ballot, providing a short name for each option. Then the creator of the contract who serves as chairperson will give the right to vote to each address individually.
@@ -12,14 +13,17 @@ For the full contract, please refer to [Ballot.sol](https://github.com/fcdn007/s
 
 
 #2 Blind Auction
+
 In this section, we will show how easy it is to create a completely blind auction contract on Ethereum. We will start with an open auction where everyone can see the bids that are made and then extend this contract into a blind auction where it is not possible to see the actual bid until the bidding period ends.
 
 ##2.1 Simple Open Auction
+
 The general idea of the following simple auction contract is that everyone can send their bids during a bidding period. The bids already include sending money / ether in order to bind the bidders to their bid. If the highest bid is raised, the previously highest bidder gets her money back. After the end of the bidding period, the contract has to be called manually for the beneficiary to receive his money - contracts cannot activate themselves.
 
 Please refer to [SimpleAuction.sol](https://github.com/fcdn007/solidity/new/master/example/solidity_doc/SimpleAuction.sol). 
 
 ##2.2 Blind Auction
+
 The previous open auction is extended to a blind auction in the following. The advantage of a blind auction is that there is no time pressure towards the end of the bidding period. Creating a blind auction on a transparent computing platform might sound like a contradiction, but cryptography comes to the rescue.
 
 During the bidding period, a bidder does not actually send her bid, but only a hashed version of it. Since it is currently considered practically impossible to find two (sufficiently long) values whose hash values are equal, the bidder commits to the bid by that. After the end of the bidding period, the bidders have to reveal their bids: They send their values unencrypted and the contract checks that the hash value is the same as the one provided during the bidding period.
@@ -33,14 +37,17 @@ For the full contract, please refer to [BlindAuction.sol](https://github.com/fcd
 
 
 #3 Safe Remote Purchase
+
 For the full contract, please refer to [Purchase.sol](https://github.com/fcdn007/solidity/new/master/example/solidity_doc/Purchase.sol). 
 
 
 
 #4 Micropayment Channel
+
 In this section we will learn how to build a simple implementation of a payment channel. It use cryptographics signatures to make repeated transfers of Ether between the same parties secure, instantaneous, and without transaction fees. To do it we need to understand how to sign and verify signatures, and setup the payment channel.
 
 ##4.1 Creating and verifying signatures
+
 Imagine Alice wants to send a quantity of Ether to Bob, i.e. Alice is the sender and the Bob is the recipient. Alice only needs to send cryptographically signed messages off-chain (e.g. via email) to Bob and it will be very similar to writing checks.
 
 Signatures are used to authorize transactions, and they are a general tool that is available to smart contracts. Alice will build a simple smart contract that lets her transmit Ether, but in a unusual way, instead of calling a function herself to initiate a payment, she will let Bob do that, and therefore pay the transaction fee. The contract will work as follows:
@@ -103,6 +110,7 @@ The smart contract needs to know exactly what parameters were signed, and so it 
 For the full contract, please refer to [ReceiverPays.sol](https://github.com/fcdn007/solidity/new/master/example/solidity_doc/ReceiverPays.sol). 
 
 ##4.2 Writing a Simple Payment Channel
+
 Alice will now build a simple but complete implementation of a payment channel. Payment channels use cryptographic signatures to make repeated transfers of Ether securely, instantaneously, and without transaction fees.
 
 What is a Payment Channel?
